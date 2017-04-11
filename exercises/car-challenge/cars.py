@@ -41,20 +41,18 @@ available_car_colors = (
 
 makes_dict = dict(makes)
 
-models_dict = dict(models)
-
 colors_dict = dict(colors)
 
-model_and_color_with_words = dict()
+model_and_color_with_words = dict(available_car_colors)
 
-# for color_id in available_car_colors:
-#     if color_id[1] = 1:
-
+print(model_and_color_with_words)
 
 
 
 
-car_dictionary = dict()
+
+
+
 
 
 

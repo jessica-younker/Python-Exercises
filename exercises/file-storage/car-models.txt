@@ -1,0 +1,12 @@
+T=Camry
+T=Prius
+N=Rocket
+N=Freestyler
+C=Monte Carlo
+C=Malibu
+F=F150
+F=Taurus
+P=Firebird
+P=Grand Am
+D=Ram
+D=Dart
