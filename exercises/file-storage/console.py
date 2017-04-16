@@ -22,11 +22,13 @@ class Carlot(object):
         with open("car-makes.txt", "r") as car_makes:
             for line in car_makes:
                 self.makes_list.append(line.replace("\n", ""))
+        print(self.makes_list)
     
     def read_models(self):
         with open("car-models.txt", "r") as car_models:
             for line in car_models:
                 self.models_list.append(line.replace("\n", "").split("="))
+        print(self.models_list)
      
     def build_car_dictionary(self):
         for make in self.makes_list:

@@ -40,16 +40,36 @@ available_car_colors = (
 )
 
 makes_dict = dict(makes)
+print(makes_dict)
 
 colors_dict = dict(colors)
+print(colors_dict)
 
-model_and_color_with_words = dict(available_car_colors)
+car_dictionary = {}
 
-print(model_and_color_with_words)
+models_colors_in_words = [list(tuple) for tuple in available_car_colors]
+print(models_colors_in_words)
 
+models_list = [list(tuple) for tuple in models]
+print(models_list)
 
+for car in models_colors_in_words:
+    for model in models:
+        if car[0]==model[0]:
+            car[0]=model[1]
+    for color in colors:
+        if car[1]==color[0]:
+            car[1]=color[1]        
+print(models_colors_in_words)
 
-
+    # def build_car_dictionary(self):
+    #     for make in self.makes_list:
+    #         make_list = []
+    #         for model in self.models_list:
+    #             if make[0]==model[0]:
+    #                 make_list.append(model[1])
+    #         self.create_car_dict[make]=make_list
+    #     print(self.create_car_dict)
 
 
 

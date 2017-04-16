@@ -1,0 +1,32 @@
+select * from album;
+select * from artist;
+select * from song;
+    
+insert into Artist VALUES (null, 'Patrick Swayze', 1987);
+insert into Album VALUES (null, 'Dirty Dancing Soundtrack', 1987, 58, 'Studio Allstars', 28, 7);
+insert into Album VALUES (null, 'Hits, with Chris Farley', 1994, 118, 'SNL Recordings', 28, 7);
+insert into Song VALUES (null, "She's Like the Wind", 301, 1987, 7, 28, 23); 
+insert into Song VALUES (null, "Dancin' Man", 601, 1994, 7, 28, 24);
+
+SELECT a.Title, s.Title FROM Album a LEFT JOIN Song s ON s.AlbumId = a.AlbumId;
+SELECT a.Title, s.Title FROM Song s LEFT JOIN Album a ON s.AlbumId = a.AlbumId;
+
+SELECT a.artistName as Artist, b.title as Album, s.title as Song FROM Artist a LEFT JOIN Album b on a.artistId=b.artistId  LEFT JOIN Song s on a.ArtistId = s.ArtistId and b.albumId = s.albumid WHERE a.ArtistName = "Patrick Swayze";
+
+SELECT Album.Title as AlbumTitle, COUNT(song.albumid) as SongCount FROM Song LEFT JOIN Album WHERE album.albumid = song.albumid GROUP BY song.AlbumID;
+
+SELECT Artist.ArtistName as ArtistName, COUNT(song.artistid) as SongCount FROM Song LEFT JOIN Artist WHERE song.artistid = artist.artistid GROUP BY song.ArtistID;
+
+SELECT GenreID, COUNT(songID) FROM Song GROUP BY GenreID;
+SELECT genre.label as Genre, COUNT(song.genreid) as Songcount FROM Song LEFT JOIN Genre WHERE genre.genreid = song.genreid GROUP BY song.genreId;
+
+SELECT album.title as AlbumTitle, MAX(SongLength) AS SongDuration FROM Song LEFT JOIN Album WHERE Album.albumid = song.albumid;
+SELECT song.title as SongTitle, MAX(SongLength) AS SongDuration FROM Song LEFT JOIN Album WHERE Album.albumid = song.albumid;
+SELECT album.title as AlbumTitle, song.title as SongTitle, MAX(SongLength) AS SongDuration FROM Song LEFT JOIN Album WHERE Album.albumid = song.albumid;
+
+
+
+
+
+
+

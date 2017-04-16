@@ -1,0 +1,42 @@
+DELETE FROM Toy;
+DELETE FROM Child;
+DELETE FROM ChildToy;
+
+DROP TABLE IF EXISTS Toy;
+DROP TABLE IF EXISTS Child;
+DROP TABLE IF EXISTS ChildToy;
+
+CREATE TABLE Child (
+    ChildId INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT,
+    Name TEXT NOT NULL,
+    Happy INT NOT NULL
+);
+
+CREATE TABLE Toy (
+    ToyId INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT,
+    Name TEXT NOT NULL,
+    ChildId INTEGER NOT NULL,
+    FOREIGN KEY (ChildId) REFERENCES Child(ChildId)
+);
+
+CREATE TABLE ChildToy (
+    ChildToyId INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT,
+    ToyId INTEGER NOT NULL,
+    ChildId INTEGER NOT NULL,
+    FOREIGN KEY (ChildId) REFERENCES Child(ChildId)
+    FOREIGN KEY (ToyId) REFERENCES Toy(ToyId)
+);
+
+INSERT INTO Child VALUES (null, 'George', 0);
+INSERT INTO Child VALUES (null, 'Larry', 0);
+INSERT INTO Toy VALUES (null, 'Slinky', 1);
+INSERT INTO Toy VALUES (null, 'Putty', 2);
+
+SELECT c.Name FROM Child c;
+
+SELECT c.Name, t.Name
+FROM Child c, Toy t 
+WHERE t.ChildId = c.ChildId
+AND c.Name = 'Larry'
+
+
