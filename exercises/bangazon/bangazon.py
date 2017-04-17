@@ -1,3 +1,7 @@
+# refactor using decorators?
+
+import random
+
 class Department(object):
     """Parent class for all departments"""
     def __init__(self, name, manager, employee_count):
@@ -129,31 +133,73 @@ class Accounting(Department):
     def meet(self, date, time):
         print("Everyone meet in conference room B")
 
+class Employee(object):
+    def __init__(self, first_name, last_name):
+        self.firstname = first_name
+        self.lastname = last_name
+    #     self.employees = set()
+        
+    # def add_employee(self, first_name, last_name):
+    #     self.employees.append(first_name, last_name)
+
+        
+    def eat():
+        """select a random restaurant name from a list of strings, 
+        print to console that the employee ate at that restaurant, and also 
+        return the restaurant.
+        """
+        possible_restaurants_list = ["mj's", "gaby's", "larry's", "stinky's"]
+        restaurant = random.choice(possible_restaurants_list)
+        return "Employee ate at " + restaurant
+
+    def eat(food="sandwich"):
+        """output that the employee ate that specific food at the office."""
+        return "Employee ate " + food + " at the office"
+
+    def eat(employees=["Sam", "Dean", "Alice"]):
+        """select a random restaurant name from a list of strings, print to 
+        console that the employee ate at that restaurant, and also output the first 
+        name of each employee in the specified list.
+        """
+        possible_restaurants_list = ["mj's", "gaby's", "larry's", "stinky's"]
+        restaurant = random.choice(possible_restaurants_list)
+        eating_employee = str(random.choice(employees))
+        return eating_employee + " ate at " + restaurant
+
+    def eat(food="pizza", employees=["Sam", "Dean", "Alice"]):
+        """select a random restaurant name from a list of strings, print to 
+        console that the employee at that restaurant, and ordered the specified 
+        food, with the first name of the teammates specified in the list.
+        Note: Notice that this signature doesn't require that the parameters 
+        to be named
+        """
+        possible_restaurants_list = ["mj's", "gaby's", "larry's", "stinky's"]
+        restaurant = random.choice(possible_restaurants_list)
+        eating_employee = str(random.choice(employees))
+        return eating_employee + " ate " + food + " at " + restaurant
+
+
 if __name__ == '__main__':
        
     hr_dept = HumanResources("HumanResources", "Walter Sobcek", 21)
     mktg_dept = Marketing("Marketing", "Maude Lebowski", 17)
     mfkg_dept = Manufacturing("Manufacturing", "Jackie Treehorn", 44)
-    acct_dept = Accounting("Accounting", "Bunny Lebowski", 5)
-    
-    print(acct_dept.budget)
-    # acct_dept.add_policy("Policy1", "the first policy") 
+    acct_dept = Accounting("Accounting", "Bunny Lebowski", 5)  
 
+    # Employee.add_employee("Sam", "Samuelz")
+    # Employee.add_employee("Dean", "Deanton")
+    # Employee.add_employee("Alice", "Alicestein")
+    # print(employees)
+
+
+    
+    # acct_dept.add_policy("Policy1", "the first policy") 
     # print(acct_dept.policies)
+    print(acct_dept.budget)
     print(hr_dept.manager)
     print(mktg_dept.manager)
     print(mfkg_dept.name)
     print(acct_dept.name)
-
-
-
-
-
-
-
-
-
-
-
+    print(Employee.eat())
 
 
