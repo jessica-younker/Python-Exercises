@@ -3,7 +3,8 @@ class Department(object):
     def __init__(self, name, manager, employee_count):
         self.name = name
         self.manager = manager
-        # self.employee_count = employee_count
+        self.employee_count = employee_count
+        self.budget = 20000
 
     def get_name(self):
         try:
@@ -43,17 +44,30 @@ class Department(object):
         policy_name (string)
         policy_text (string)
         """ 
-        self.policies.add((policy_name, policy_text))
+        self.policies.add(policy_name, policy_text)
+        self.policies = set()
 
-    # def get_employee_count(self):
-    #     try:
-    #         return self.__employee_count
-    #     except AttributeError:
-    #         return ""
+    def get_policy(self, policy_name):
+        try:
+            return self.__policy
+        except AttributeError:
+            return ""
 
-    # def set_employee_count(self, val):
-    #     if not isinstance(val, int):
-    #         raise TypeError('Please provide an integer to count employee')
+    def get_employee_count(self):
+        try:
+            return self.__employee_count
+        except AttributeError:
+            return ""
+
+    def set_employee_count(self, val):
+        if not isinstance(val, int):
+            raise TypeError('Please provide an integer to count employee')
+
+    def meet(self, manager, date, time):
+        print("Everyone meet in {}'s office".format(self.manager))
+
+    def get_budget(self):
+        return self.budget
 
 
 class HumanResources(Department):
@@ -61,32 +75,59 @@ class HumanResources(Department):
         Methods: __init__, add_policy, get_policy, etc."""
     def __init__(self, name, manager, employee_count):
         super().__init__(name, manager, employee_count)
-        self.policies = set()
-
     
+        self.budget = super().get_budget() - 1000
+    
+    def hire_person(self, name):
+        print("you have hired that person")
+
+    def fire_person(self, name):
+        print("you have fired that person")
+
+    def meet(self, date, time):
+        print("Everyone meet in conference room")
+   
 class Marketing(Department):
     """Class for representing Marketing department
         Methods: __init__, add_policy, get_policy, etc."""
     def __init__(self, name, manager, employee_count):
         super().__init__(name, manager, employee_count)
-        self.policies = set()
 
+        self.budget = super().get_budget() - 10000
+
+    def design_brand(self):
+        print("brand")
+        
+    def meet(self, date, time):
+        print("Everyone meet in breakroom")
 
 class Manufacturing(Department):
     """Class for representing Manufacturing department
         Methods: __init__, add_policy, get_policy, etc."""
     def __init__(self, name, manager, employee_count):
         super().__init__(name, manager, employee_count)
-        self.policies = set()
 
+        self.budget = super().get_budget() - 1200
+       
+    def source_materials(self):
+        print("raw materials list")
+
+    def meet(self, date, time):
+        print("Everyone meet in parkinglot")
 
 class Accounting(Department):
     """Class for representing Accounting department
         Methods: __init__, add_policy, get_policy, etc."""
     def __init__(self, name, manager, employee_count):
         super().__init__(name, manager, employee_count)
-        self.policies = set()
 
+        self.budget = super().get_budget() - 3000
+     
+    def approve_budget(self): 
+        print("budget approved")     
+
+    def meet(self, date, time):
+        print("Everyone meet in conference room B")
 
 if __name__ == '__main__':
        
@@ -95,9 +136,10 @@ if __name__ == '__main__':
     mfkg_dept = Manufacturing("Manufacturing", "Jackie Treehorn", 44)
     acct_dept = Accounting("Accounting", "Bunny Lebowski", 5)
     
-    acct_dept.add_policy("Policy1", "the first policy") 
+    print(acct_dept.budget)
+    # acct_dept.add_policy("Policy1", "the first policy") 
 
-    print(acct_dept.policies)
+    # print(acct_dept.policies)
     print(hr_dept.manager)
     print(mktg_dept.manager)
     print(mfkg_dept.name)
