@@ -138,7 +138,7 @@ class Accounting(Department):
     def meet(self, date, time):
         print("Everyone meet in conference room B")
 
-
+# keyword arguments, optional arguements
 class Employee(object):
     def __init__(self, first_name, last_name):
         self.firstname = first_name
@@ -164,27 +164,25 @@ class Employee(object):
         return s
 
 
-    
+class Full_Time:
+    def __init__(self):
+        self.hours_per_week = 40
 
-# class Full_Time:
-#     def __init__(self):
-#         self.hours_per_week = 40
-
-# class Part_Time:
-#     def __init__(self):
-#         self.hours_per_week = 24
+class Part_Time:
+    def __init__(self):
+        self.hours_per_week = 24
 
 
-# class HumanResourcesAdministrator(Employee):
-#     pass
+class HumanResourcesAdministrator(Employee):
+    pass
 
 
-# class HeatherMcGee(HumanResourcesAdministrator, Full_Time):
-#     pass
+class HeatherMcGee(HumanResourcesAdministrator, Full_Time):
+    pass
 
 
-# class MC(HumanResourcesAdministrator, Part_Time):
-#     pass
+class MC(HumanResourcesAdministrator, Part_Time):
+    pass
 
 
 
