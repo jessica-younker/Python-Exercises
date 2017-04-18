@@ -73,7 +73,12 @@ class Department(object):
     def get_budget(self):
         return self.budget
 
+# class HumanResources(Employee, FullTime):
+#   """Describes human resources employees"""
 
+#   def __init__(self, first_name, last_name):
+#     super().__init__(first_name, last_name) # super is Employee
+#     FullTime.__init__(self)
 class HumanResources(Department):
     """Class for representing Human Resources department
         Methods: __init__, add_policy, get_policy, etc."""
@@ -133,50 +138,54 @@ class Accounting(Department):
     def meet(self, date, time):
         print("Everyone meet in conference room B")
 
+
 class Employee(object):
     def __init__(self, first_name, last_name):
         self.firstname = first_name
         self.lastname = last_name
-    #     self.employees = set()
         
-    # def add_employee(self, first_name, last_name):
-    #     self.employees.append(first_name, last_name)
-
+    def eat(self, food=None, companions=None):
+      
+        s = "{} {} ".format(self.firstname, self.lastname)
+        if food:
+            s += "ate " + food + " at the office"
+        else:            
+            possible_restaurants_list = ["mj's", "gaby's", "larry's", "stinky's"]
+            restaurant = random.choice(possible_restaurants_list)
+            s += "ate at " + restaurant
         
-    def eat():
-        """select a random restaurant name from a list of strings, 
-        print to console that the employee ate at that restaurant, and also 
-        return the restaurant.
-        """
-        possible_restaurants_list = ["mj's", "gaby's", "larry's", "stinky's"]
-        restaurant = random.choice(possible_restaurants_list)
-        return "Employee ate at " + restaurant
+        if companions:    
+            var_companions = [c.firstname for c in companions]
+            strung_companions = ", ".join(var_companions)
+            s += " with " + strung_companions
+        else:
+            s += " all alone"
+        
+        return s
 
-    def eat(food="sandwich"):
-        """output that the employee ate that specific food at the office."""
-        return "Employee ate " + food + " at the office"
 
-    def eat(employees=["Sam", "Dean", "Alice"]):
-        """select a random restaurant name from a list of strings, print to 
-        console that the employee ate at that restaurant, and also output the first 
-        name of each employee in the specified list.
-        """
-        possible_restaurants_list = ["mj's", "gaby's", "larry's", "stinky's"]
-        restaurant = random.choice(possible_restaurants_list)
-        eating_employee = str(random.choice(employees))
-        return eating_employee + " ate at " + restaurant
+    
 
-    def eat(food="pizza", employees=["Sam", "Dean", "Alice"]):
-        """select a random restaurant name from a list of strings, print to 
-        console that the employee at that restaurant, and ordered the specified 
-        food, with the first name of the teammates specified in the list.
-        Note: Notice that this signature doesn't require that the parameters 
-        to be named
-        """
-        possible_restaurants_list = ["mj's", "gaby's", "larry's", "stinky's"]
-        restaurant = random.choice(possible_restaurants_list)
-        eating_employee = str(random.choice(employees))
-        return eating_employee + " ate " + food + " at " + restaurant
+# class Full_Time:
+#     def __init__(self):
+#         self.hours_per_week = 40
+
+# class Part_Time:
+#     def __init__(self):
+#         self.hours_per_week = 24
+
+
+# class HumanResourcesAdministrator(Employee):
+#     pass
+
+
+# class HeatherMcGee(HumanResourcesAdministrator, Full_Time):
+#     pass
+
+
+# class MC(HumanResourcesAdministrator, Part_Time):
+#     pass
+
 
 
 if __name__ == '__main__':
@@ -186,10 +195,11 @@ if __name__ == '__main__':
     mfkg_dept = Manufacturing("Manufacturing", "Jackie Treehorn", 44)
     acct_dept = Accounting("Accounting", "Bunny Lebowski", 5)  
 
-    # Employee.add_employee("Sam", "Samuelz")
-    # Employee.add_employee("Dean", "Deanton")
-    # Employee.add_employee("Alice", "Alicestein")
-    # print(employees)
+    Sam = Employee("Sam", "Samuelz")
+    Bert = Employee("Bert", "Samuelz")
+    Dean = Employee("Dean", "Samuelz")
+    Alice = Employee("Alice", "Samuelz")
+
 
 
     
@@ -200,6 +210,7 @@ if __name__ == '__main__':
     print(mktg_dept.manager)
     print(mfkg_dept.name)
     print(acct_dept.name)
-    print(Employee.eat())
-
-
+    print(Sam.eat())
+    print(Sam.eat(food="sangawich"))
+    print(Sam.eat(companions=[Bert, Dean, Alice]))
+    print(Sam.eat("pizza",  [Bert, Dean, Alice]))
