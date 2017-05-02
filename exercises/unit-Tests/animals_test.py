@@ -1,12 +1,11 @@
 # Write test cases to verify the I/O of the following methods of Animal and Dog.
 
-# x In the test class' setUpClass() method, create an instance of Animal and Dog.
+# In the test class' setUpClass() method, create an instance of Animal and Dog.
 
 # Animal object has the correct name property.
 
 # Set a species and verify that the object property of species has the correct value.
 
-# Invoking the walk() method set the correct speed on the both objects.
 
 # The animal object is an instance of Animal.
 
@@ -17,47 +16,38 @@
 
 # python -m unittest discover -s . -p "Test*.py" -v
 
-import unitest
+import unittest
 
-from animals import Animal
+from animals import Animal, Dog
 
 class TestAnimalMethods(unittest.TestCase):
 
-    # def setUp(self):
-    #     self.Animal = Animal()
+    def setUpClass():
+        critter = Animal()
+        scooby = Dog(Animal)
+        print(scooby)
 
-    def test_get_name(self):
-    """Returns the animal's name"""
-        self.assertEqual(Animal.get_name("Jerry"), "Jerry")
+    def setUp(self):
+        self.animal = Animal(name="Jerry")
+
+    def test_get_name(self):       
+        self.assertEqual(self.animal.name, "Jerry")
 
     def test_set_species(self):
-    """Sets the species of the animal"""
-        self.assertEqual(Animal.get_set_species("Sapiens"), "Sapiens")
+        self.animal.set_species("jeromus") 
+        self.assertEqual(self.animal.species, "jeromus")
+# Invoking the walk() method set the correct speed on the both objects.
 
     def test_walk(self):
-    """Sets the speed of the animal"""
-        self.assertEqual(Animal.walk())
+        self.animal.set_legs(number_of_legs=6)
+        self.animal.walk()
+        self.assertAlmostEqual(self.animal.speed, .6)
+        
+        self.assertRaises(ValueError, self.animal.set_legs, number_of_legs=0)
+        self.animal.walk()
 
 
 
-scooby = Dog()
-chipmunk = Animal("Chipmunk", "Tamiina", 30, 4)
-
-class TestCalculationMethods(unittest.TestCase):
-
-    def test_add(self):
-        calculater = Calculator()
-        self.assertEqual(calculator.add(2,2), 4)
-
-    def test_subtract(self):
-        calculater = Calculator()
-        self.assertEqual(calculator.subtract(2,2), 0)
-
-    def test_multiply(self):
-        calculater = Calculator()
-        self.assertEqual(calculator.multiply(2,3), 6)
-
-    def test_divide(self):
-        calculater = Calculator()
-        self.assertEqual(calculator.divide(10, 5), 2)
+if __name__ == '__main__':
+    unittest.main()
 
