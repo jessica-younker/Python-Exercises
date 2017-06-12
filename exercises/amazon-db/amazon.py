@@ -28,7 +28,7 @@ class Amazon:
       date = datetime.fromtimestamp(timestamp).strftime('%Y-%m-%d %H:%M:%S')
       trans = "BUY"
       symbol = "AMZN"
-      # ? are placeholders for sqllite3 adapter
+      # ? are placeholders for sqllite3 adapt er
       c.execute("insert into stocks values (?, ?, ?, ?, ?)",
                     (date, trans, symbol, quantity, purchase_price))
       # must do commit to save to db
